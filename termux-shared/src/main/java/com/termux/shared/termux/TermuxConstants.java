@@ -463,8 +463,17 @@ public final class TermuxConstants {
      */
 
     /** Termux app internal private app data directory path */
-    @SuppressLint("SdCardPath")
-    public static final String INTERNAL_PRIVATE_APP_DATA_DIR_PATH = "/data/data/" + TERMUX_PACKAGE_NAME; // Default: "/data/data/com.termux"
+    //@SuppressLint("SdCardPath")
+    //public static final String INTERNAL_PRIVATE_APP_DATA_DIR_PATH = "/data/data/" + TERMUX_PACKAGE_NAME; // Default: "/data/data/com.termux"
+    PackageManager m = getPackageManager();
+    String s = getPackageName();
+    try {
+        PackageInfo p = m.getPackageInfo(s, 0);
+        s = p.applicationInfo.dataDir;
+    } catch (PackageManager.NameNotFoundException e) {
+        Log.w("yourtag", "Error Package name not found ", e);
+    }
+    public static final String INTERNAL_PRIVATE_APP_DATA_DIR_PATH = s + TERMUX_PACKAGE_NAME; // Default: "/data/data/com.termux"
     /** Termux app internal private app data directory */
     public static final File INTERNAL_PRIVATE_APP_DATA_DIR = new File(INTERNAL_PRIVATE_APP_DATA_DIR_PATH);
 
