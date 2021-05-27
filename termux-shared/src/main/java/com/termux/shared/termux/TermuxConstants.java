@@ -510,7 +510,29 @@ public final class TermuxConstants {
     public static String TERMUX_PLUGIN_COMMAND_ERRORS_NOTIFICATION_CHANNEL_NAME;
     public static String TERMUX_CRASH_REPORTS_NOTIFICATION_CHANNEL_ID;
     public static String TERMUX_CRASH_REPORTS_NOTIFICATION_CHANNEL_NAME;
-
+    public static String TERMUX_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION;
+    public static String TERMUX_API_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION;
+    public static String TERMUX_BOOT_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION;
+    public static String TERMUX_FLOAT_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION;
+    public static String TERMUX_STYLING_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION;
+    public static String TERMUX_TASKER_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION;
+    public static String TERMUX_WIDGET_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION;
+    public static String TERMUX_PROPERTIES_PRIMARY_FILE_PATH;
+    public static File TERMUX_PROPERTIES_PRIMARY_FILE;
+    public static String TERMUX_PROPERTIES_SECONDARY_FILE_PATH;
+    public static File TERMUX_PROPERTIES_SECONDARY_FILE;
+    public static String TERMUX_COLOR_PROPERTIES_FILE_PATH;
+    public static File TERMUX_COLOR_PROPERTIES_FILE;
+    public static String TERMUX_FONT_FILE_PATH;
+    public static File TERMUX_FONT_FILE;
+    public static String TERMUX_CRASH_LOG_FILE_PATH;
+    public static String TERMUX_CRASH_LOG_BACKUP_FILE_PATH;
+    public static String PERMISSION_RUN_COMMAND;
+    public static String PROP_ALLOW_EXTERNAL_APPS;
+    public static String PROP_DEFAULT_VALUE_ALLOW_EXTERNAL_APPS;
+    public static String BROADCAST_TERMUX_OPENED;
+    public static String TERMUX_FILE_SHARE_URI_AUTHORITY;
+    
 
 
 
@@ -678,85 +700,86 @@ public final class TermuxConstants {
         TERMUX_CRASH_REPORTS_NOTIFICATION_CHANNEL_ID = "termux_crash_reports_notification_channel";
         /** Termux app notification channel name used for crash reports */
         TERMUX_CRASH_REPORTS_NOTIFICATION_CHANNEL_NAME = TermuxConstants.TERMUX_APP_NAME + " Crash Reports";
+
+
+        /*
+        * Termux app and plugin preferences and properties file paths.
+        */
+
+        /** Termux app default SharedPreferences file basename without extension */
+        TERMUX_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION = TERMUX_PACKAGE_NAME + "_preferences"; // Default: "com.termux_preferences"
+
+        /** Termux API app default SharedPreferences file basename without extension */
+        TERMUX_API_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION = TERMUX_API_PACKAGE_NAME + "_preferences"; // Default: "com.termux.api_preferences"
+
+        /** Termux Boot app default SharedPreferences file basename without extension */
+        TERMUX_BOOT_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION = TERMUX_BOOT_PACKAGE_NAME + "_preferences"; // Default: "com.termux.boot_preferences"
+
+        /** Termux Float app default SharedPreferences file basename without extension */
+        TERMUX_FLOAT_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION = TERMUX_FLOAT_PACKAGE_NAME + "_preferences"; // Default: "com.termux.window_preferences"
+
+        /** Termux Styling app default SharedPreferences file basename without extension */
+        TERMUX_STYLING_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION = TERMUX_STYLING_PACKAGE_NAME + "_preferences"; // Default: "com.termux.styling_preferences"
+
+        /** Termux Tasker app default SharedPreferences file basename without extension */
+        TERMUX_TASKER_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION = TERMUX_TASKER_PACKAGE_NAME + "_preferences"; // Default: "com.termux.tasker_preferences"
+
+        /** Termux Widget app default SharedPreferences file basename without extension */
+        TERMUX_WIDGET_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION = TERMUX_WIDGET_PACKAGE_NAME + "_preferences"; // Default: "com.termux.widget_preferences"
+
+
+        /** Termux app termux.properties primary file path */
+        TERMUX_PROPERTIES_PRIMARY_FILE_PATH = TERMUX_DATA_HOME_DIR_PATH + "/termux.properties"; // Default: "/data/data/com.termux/files/home/.termux/termux.properties"
+        /** Termux app termux.properties primary file */
+        TERMUX_PROPERTIES_PRIMARY_FILE = new File(TERMUX_PROPERTIES_PRIMARY_FILE_PATH);
+
+        /** Termux app termux.properties secondary file path */
+        TERMUX_PROPERTIES_SECONDARY_FILE_PATH = TERMUX_CONFIG_HOME_DIR_PATH + "/termux.properties"; // Default: "/data/data/com.termux/files/home/.config/termux/termux.properties"
+        /** Termux app termux.properties secondary file */
+        TERMUX_PROPERTIES_SECONDARY_FILE = new File(TERMUX_PROPERTIES_SECONDARY_FILE_PATH);
+
+
+        /** Termux app and Termux:Styling colors.properties file path */
+        TERMUX_COLOR_PROPERTIES_FILE_PATH = TERMUX_DATA_HOME_DIR_PATH + "/colors.properties"; // Default: "/data/data/com.termux/files/home/.termux/colors.properties"
+        /** Termux app and Termux:Styling colors.properties file */
+        TERMUX_COLOR_PROPERTIES_FILE = new File(TERMUX_COLOR_PROPERTIES_FILE_PATH);
+
+        /** Termux app and Termux:Styling font.ttf file path */
+        TERMUX_FONT_FILE_PATH = TERMUX_DATA_HOME_DIR_PATH + "/font.ttf"; // Default: "/data/data/com.termux/files/home/.termux/font.ttf"
+        /** Termux app and Termux:Styling font.ttf file */
+        TERMUX_FONT_FILE = new File(TERMUX_FONT_FILE_PATH);
+
+
+        /** Termux app and plugins crash log file path */
+        TERMUX_CRASH_LOG_FILE_PATH = TERMUX_HOME_DIR_PATH + "/crash_log.md"; // Default: "/data/data/com.termux/files/home/crash_log.md"
+
+        /** Termux app and plugins crash log backup file path */
+        TERMUX_CRASH_LOG_BACKUP_FILE_PATH = TERMUX_HOME_DIR_PATH + "/crash_log_backup.md"; // Default: "/data/data/com.termux/files/home/crash_log_backup.md"
+
+
+
+
+        /*
+        * Termux app and plugins miscellaneous variables.
+        */
+
+        /** Android OS permission declared by Termux app in AndroidManifest.xml which can be requested by 3rd party apps to run various commands in Termux app context */
+        PERMISSION_RUN_COMMAND = TERMUX_PACKAGE_NAME + ".permission.RUN_COMMAND"; // Default: "com.termux.permission.RUN_COMMAND"
+
+        /** Termux property defined in termux.properties file as a secondary check to PERMISSION_RUN_COMMAND to allow 3rd party apps to run various commands in Termux app context */
+        PROP_ALLOW_EXTERNAL_APPS = "allow-external-apps"; // Default: "allow-external-apps"
+        /** Default value for {@link #PROP_ALLOW_EXTERNAL_APPS} */
+        PROP_DEFAULT_VALUE_ALLOW_EXTERNAL_APPS = "false"; // Default: "false"
+
+        /** The broadcast action sent when Termux App opens */
+        BROADCAST_TERMUX_OPENED = TERMUX_PACKAGE_NAME + ".app.OPENED";
+
+        /** The Uri authority for Termux app file shares */
+        TERMUX_FILE_SHARE_URI_AUTHORITY = TERMUX_PACKAGE_NAME + ".files"; // Default: "com.termux.files"
     }
 
 
 
-
-    /*
-     * Termux app and plugin preferences and properties file paths.
-     */
-
-    /** Termux app default SharedPreferences file basename without extension */
-    public static final String TERMUX_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION = TERMUX_PACKAGE_NAME + "_preferences"; // Default: "com.termux_preferences"
-
-    /** Termux API app default SharedPreferences file basename without extension */
-    public static final String TERMUX_API_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION = TERMUX_API_PACKAGE_NAME + "_preferences"; // Default: "com.termux.api_preferences"
-
-    /** Termux Boot app default SharedPreferences file basename without extension */
-    public static final String TERMUX_BOOT_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION = TERMUX_BOOT_PACKAGE_NAME + "_preferences"; // Default: "com.termux.boot_preferences"
-
-    /** Termux Float app default SharedPreferences file basename without extension */
-    public static final String TERMUX_FLOAT_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION = TERMUX_FLOAT_PACKAGE_NAME + "_preferences"; // Default: "com.termux.window_preferences"
-
-    /** Termux Styling app default SharedPreferences file basename without extension */
-    public static final String TERMUX_STYLING_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION = TERMUX_STYLING_PACKAGE_NAME + "_preferences"; // Default: "com.termux.styling_preferences"
-
-    /** Termux Tasker app default SharedPreferences file basename without extension */
-    public static final String TERMUX_TASKER_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION = TERMUX_TASKER_PACKAGE_NAME + "_preferences"; // Default: "com.termux.tasker_preferences"
-
-    /** Termux Widget app default SharedPreferences file basename without extension */
-    public static final String TERMUX_WIDGET_DEFAULT_PREFERENCES_FILE_BASENAME_WITHOUT_EXTENSION = TERMUX_WIDGET_PACKAGE_NAME + "_preferences"; // Default: "com.termux.widget_preferences"
-
-
-    /** Termux app termux.properties primary file path */
-    public static final String TERMUX_PROPERTIES_PRIMARY_FILE_PATH = TERMUX_DATA_HOME_DIR_PATH + "/termux.properties"; // Default: "/data/data/com.termux/files/home/.termux/termux.properties"
-    /** Termux app termux.properties primary file */
-    public static final File TERMUX_PROPERTIES_PRIMARY_FILE = new File(TERMUX_PROPERTIES_PRIMARY_FILE_PATH);
-
-    /** Termux app termux.properties secondary file path */
-    public static final String TERMUX_PROPERTIES_SECONDARY_FILE_PATH = TERMUX_CONFIG_HOME_DIR_PATH + "/termux.properties"; // Default: "/data/data/com.termux/files/home/.config/termux/termux.properties"
-    /** Termux app termux.properties secondary file */
-    public static final File TERMUX_PROPERTIES_SECONDARY_FILE = new File(TERMUX_PROPERTIES_SECONDARY_FILE_PATH);
-
-
-    /** Termux app and Termux:Styling colors.properties file path */
-    public static final String TERMUX_COLOR_PROPERTIES_FILE_PATH = TERMUX_DATA_HOME_DIR_PATH + "/colors.properties"; // Default: "/data/data/com.termux/files/home/.termux/colors.properties"
-    /** Termux app and Termux:Styling colors.properties file */
-    public static final File TERMUX_COLOR_PROPERTIES_FILE = new File(TERMUX_COLOR_PROPERTIES_FILE_PATH);
-
-    /** Termux app and Termux:Styling font.ttf file path */
-    public static final String TERMUX_FONT_FILE_PATH = TERMUX_DATA_HOME_DIR_PATH + "/font.ttf"; // Default: "/data/data/com.termux/files/home/.termux/font.ttf"
-    /** Termux app and Termux:Styling font.ttf file */
-    public static final File TERMUX_FONT_FILE = new File(TERMUX_FONT_FILE_PATH);
-
-
-    /** Termux app and plugins crash log file path */
-    public static final String TERMUX_CRASH_LOG_FILE_PATH = TERMUX_HOME_DIR_PATH + "/crash_log.md"; // Default: "/data/data/com.termux/files/home/crash_log.md"
-
-    /** Termux app and plugins crash log backup file path */
-    public static final String TERMUX_CRASH_LOG_BACKUP_FILE_PATH = TERMUX_HOME_DIR_PATH + "/crash_log_backup.md"; // Default: "/data/data/com.termux/files/home/crash_log_backup.md"
-
-
-
-
-    /*
-     * Termux app and plugins miscellaneous variables.
-     */
-
-    /** Android OS permission declared by Termux app in AndroidManifest.xml which can be requested by 3rd party apps to run various commands in Termux app context */
-    public static final String PERMISSION_RUN_COMMAND = TERMUX_PACKAGE_NAME + ".permission.RUN_COMMAND"; // Default: "com.termux.permission.RUN_COMMAND"
-
-    /** Termux property defined in termux.properties file as a secondary check to PERMISSION_RUN_COMMAND to allow 3rd party apps to run various commands in Termux app context */
-    public static final String PROP_ALLOW_EXTERNAL_APPS = "allow-external-apps"; // Default: "allow-external-apps"
-    /** Default value for {@link #PROP_ALLOW_EXTERNAL_APPS} */
-    public static final String PROP_DEFAULT_VALUE_ALLOW_EXTERNAL_APPS = "false"; // Default: "false"
-
-    /** The broadcast action sent when Termux App opens */
-    public static final String BROADCAST_TERMUX_OPENED = TERMUX_PACKAGE_NAME + ".app.OPENED";
-
-    /** The Uri authority for Termux app file shares */
-    public static final String TERMUX_FILE_SHARE_URI_AUTHORITY = TERMUX_PACKAGE_NAME + ".files"; // Default: "com.termux.files"
 
 
 
