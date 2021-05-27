@@ -492,6 +492,25 @@ public final class TermuxConstants {
     public static File TERMUX_DATA_HOME_DIR;
     public static String TERMUX_STORAGE_HOME_DIR_PATH;
     public static File TERMUX_STORAGE_HOME_DIR;
+    public static String TERMUX_BOOT_SCRIPTS_DIR_PATH;
+    public static File TERMUX_BOOT_SCRIPTS_DIR;
+    public static String TERMUX_SHORTCUT_SCRIPTS_DIR_PATH;
+    public static File TERMUX_SHORTCUT_SCRIPTS_DIR;
+    public static String TERMUX_SHORTCUT_TASKS_SCRIPTS_DIR_PATH;
+    public static File TERMUX_SHORTCUT_TASKS_SCRIPTS_DIR;
+    public static String TERMUX_TASKER_SCRIPTS_DIR_PATH;
+    public static File TERMUX_TASKER_SCRIPTS_DIR;
+    public static String TERMUX_APP_NOTIFICATION_CHANNEL_ID;
+    public static String TERMUX_APP_NOTIFICATION_CHANNEL_NAME;
+    public static int TERMUX_APP_NOTIFICATION_ID;
+    public static String TERMUX_RUN_COMMAND_NOTIFICATION_CHANNEL_ID;
+    public static String TERMUX_RUN_COMMAND_NOTIFICATION_CHANNEL_NAME;
+    public static int TERMUX_RUN_COMMAND_NOTIFICATION_ID;
+    public static String TERMUX_PLUGIN_COMMAND_ERRORS_NOTIFICATION_CHANNEL_ID;
+    public static String TERMUX_PLUGIN_COMMAND_ERRORS_NOTIFICATION_CHANNEL_NAME;
+    public static String TERMUX_CRASH_REPORTS_NOTIFICATION_CHANNEL_ID;
+    public static String TERMUX_CRASH_REPORTS_NOTIFICATION_CHANNEL_NAME;
+
 
 
 
@@ -602,6 +621,63 @@ public final class TermuxConstants {
          TERMUX_STORAGE_HOME_DIR_PATH = TERMUX_HOME_DIR_PATH + "/storage"; // Default: "/data/data/com.termux/files/home/storage"
         /** Termux app storage home directory */
          TERMUX_STORAGE_HOME_DIR = new File(TERMUX_STORAGE_HOME_DIR_PATH);
+
+
+        /*
+        * Termux app plugin specific paths.
+        */
+
+        /** Termux app directory path to store scripts to be run at boot by Termux:Boot */
+        TERMUX_BOOT_SCRIPTS_DIR_PATH = TERMUX_DATA_HOME_DIR_PATH + "/boot"; // Default: "/data/data/com.termux/files/home/.termux/boot"
+        /** Termux app directory to store scripts to be run at boot by Termux:Boot */
+        TERMUX_BOOT_SCRIPTS_DIR = new File(TERMUX_BOOT_SCRIPTS_DIR_PATH);
+
+
+        /** Termux app directory path to store foreground scripts that can be run by the termux launcher widget provided by Termux:Widget */
+        TERMUX_SHORTCUT_SCRIPTS_DIR_PATH = TERMUX_DATA_HOME_DIR_PATH + "/shortcuts"; // Default: "/data/data/com.termux/files/home/.termux/shortcuts"
+        /** Termux app directory to store foreground scripts that can be run by the termux launcher widget provided by Termux:Widget */
+        TERMUX_SHORTCUT_SCRIPTS_DIR = new File(TERMUX_SHORTCUT_SCRIPTS_DIR_PATH);
+
+
+        /** Termux app directory path to store background scripts that can be run by the termux launcher widget provided by Termux:Widget */
+        TERMUX_SHORTCUT_TASKS_SCRIPTS_DIR_PATH = TERMUX_DATA_HOME_DIR_PATH + "/shortcuts/tasks"; // Default: "/data/data/com.termux/files/home/.termux/shortcuts/tasks"
+        /** Termux app directory to store background scripts that can be run by the termux launcher widget provided by Termux:Widget */
+        TERMUX_SHORTCUT_TASKS_SCRIPTS_DIR = new File(TERMUX_SHORTCUT_TASKS_SCRIPTS_DIR_PATH);
+
+
+        /** Termux app directory path to store scripts to be run by 3rd party twofortyfouram locale plugin host apps like Tasker app via the Termux:Tasker plugin client */
+        TERMUX_TASKER_SCRIPTS_DIR_PATH = TERMUX_DATA_HOME_DIR_PATH + "/tasker"; // Default: "/data/data/com.termux/files/home/.termux/tasker"
+        /** Termux app directory to store scripts to be run by 3rd party twofortyfouram locale plugin host apps like Tasker app via the Termux:Tasker plugin client */
+        TERMUX_TASKER_SCRIPTS_DIR = new File(TERMUX_TASKER_SCRIPTS_DIR_PATH);
+
+
+        /*
+        * Termux app and plugins notification variables.
+        */
+
+        /** Termux app notification channel id used by {@link TERMUX_APP.TERMUX_SERVICE} */
+        TERMUX_APP_NOTIFICATION_CHANNEL_ID = "termux_notification_channel";
+        /** Termux app notification channel name used by {@link TERMUX_APP.TERMUX_SERVICE} */
+        TERMUX_APP_NOTIFICATION_CHANNEL_NAME = TermuxConstants.TERMUX_APP_NAME + " App";
+        /** Termux app unique notification id used by {@link TERMUX_APP.TERMUX_SERVICE} */
+        TERMUX_APP_NOTIFICATION_ID = 1337;
+
+        /** Termux app notification channel id used by {@link TERMUX_APP.RUN_COMMAND_SERVICE} */
+        TERMUX_RUN_COMMAND_NOTIFICATION_CHANNEL_ID = "termux_run_command_notification_channel";
+        /** Termux app notification channel name used by {@link TERMUX_APP.RUN_COMMAND_SERVICE} */
+        TERMUX_RUN_COMMAND_NOTIFICATION_CHANNEL_NAME = TermuxConstants.TERMUX_APP_NAME + " RunCommandService";
+        /** Termux app unique notification id used by {@link TERMUX_APP.RUN_COMMAND_SERVICE} */
+        TERMUX_RUN_COMMAND_NOTIFICATION_ID = 1338;
+
+        /** Termux app notification channel id used for plugin command errors */
+        TERMUX_PLUGIN_COMMAND_ERRORS_NOTIFICATION_CHANNEL_ID = "termux_plugin_command_errors_notification_channel";
+        /** Termux app notification channel name used for plugin command errors */
+        TERMUX_PLUGIN_COMMAND_ERRORS_NOTIFICATION_CHANNEL_NAME = TermuxConstants.TERMUX_APP_NAME + " Plugin Commands Errors";
+
+        /** Termux app notification channel id used for crash reports */
+        TERMUX_CRASH_REPORTS_NOTIFICATION_CHANNEL_ID = "termux_crash_reports_notification_channel";
+        /** Termux app notification channel name used for crash reports */
+        TERMUX_CRASH_REPORTS_NOTIFICATION_CHANNEL_NAME = TermuxConstants.TERMUX_APP_NAME + " Crash Reports";
     }
 
 
@@ -660,70 +736,6 @@ public final class TermuxConstants {
 
     /** Termux app and plugins crash log backup file path */
     public static final String TERMUX_CRASH_LOG_BACKUP_FILE_PATH = TERMUX_HOME_DIR_PATH + "/crash_log_backup.md"; // Default: "/data/data/com.termux/files/home/crash_log_backup.md"
-
-
-
-
-
-    /*
-     * Termux app plugin specific paths.
-     */
-
-    /** Termux app directory path to store scripts to be run at boot by Termux:Boot */
-    public static final String TERMUX_BOOT_SCRIPTS_DIR_PATH = TERMUX_DATA_HOME_DIR_PATH + "/boot"; // Default: "/data/data/com.termux/files/home/.termux/boot"
-    /** Termux app directory to store scripts to be run at boot by Termux:Boot */
-    public static final File TERMUX_BOOT_SCRIPTS_DIR = new File(TERMUX_BOOT_SCRIPTS_DIR_PATH);
-
-
-    /** Termux app directory path to store foreground scripts that can be run by the termux launcher widget provided by Termux:Widget */
-    public static final String TERMUX_SHORTCUT_SCRIPTS_DIR_PATH = TERMUX_DATA_HOME_DIR_PATH + "/shortcuts"; // Default: "/data/data/com.termux/files/home/.termux/shortcuts"
-    /** Termux app directory to store foreground scripts that can be run by the termux launcher widget provided by Termux:Widget */
-    public static final File TERMUX_SHORTCUT_SCRIPTS_DIR = new File(TERMUX_SHORTCUT_SCRIPTS_DIR_PATH);
-
-
-    /** Termux app directory path to store background scripts that can be run by the termux launcher widget provided by Termux:Widget */
-    public static final String TERMUX_SHORTCUT_TASKS_SCRIPTS_DIR_PATH = TERMUX_DATA_HOME_DIR_PATH + "/shortcuts/tasks"; // Default: "/data/data/com.termux/files/home/.termux/shortcuts/tasks"
-    /** Termux app directory to store background scripts that can be run by the termux launcher widget provided by Termux:Widget */
-    public static final File TERMUX_SHORTCUT_TASKS_SCRIPTS_DIR = new File(TERMUX_SHORTCUT_TASKS_SCRIPTS_DIR_PATH);
-
-
-    /** Termux app directory path to store scripts to be run by 3rd party twofortyfouram locale plugin host apps like Tasker app via the Termux:Tasker plugin client */
-    public static final String TERMUX_TASKER_SCRIPTS_DIR_PATH = TERMUX_DATA_HOME_DIR_PATH + "/tasker"; // Default: "/data/data/com.termux/files/home/.termux/tasker"
-    /** Termux app directory to store scripts to be run by 3rd party twofortyfouram locale plugin host apps like Tasker app via the Termux:Tasker plugin client */
-    public static final File TERMUX_TASKER_SCRIPTS_DIR = new File(TERMUX_TASKER_SCRIPTS_DIR_PATH);
-
-
-
-
-
-    /*
-     * Termux app and plugins notification variables.
-     */
-
-    /** Termux app notification channel id used by {@link TERMUX_APP.TERMUX_SERVICE} */
-    public static final String TERMUX_APP_NOTIFICATION_CHANNEL_ID = "termux_notification_channel";
-    /** Termux app notification channel name used by {@link TERMUX_APP.TERMUX_SERVICE} */
-    public static final String TERMUX_APP_NOTIFICATION_CHANNEL_NAME = TermuxConstants.TERMUX_APP_NAME + " App";
-    /** Termux app unique notification id used by {@link TERMUX_APP.TERMUX_SERVICE} */
-    public static final int TERMUX_APP_NOTIFICATION_ID = 1337;
-
-    /** Termux app notification channel id used by {@link TERMUX_APP.RUN_COMMAND_SERVICE} */
-    public static final String TERMUX_RUN_COMMAND_NOTIFICATION_CHANNEL_ID = "termux_run_command_notification_channel";
-    /** Termux app notification channel name used by {@link TERMUX_APP.RUN_COMMAND_SERVICE} */
-    public static final String TERMUX_RUN_COMMAND_NOTIFICATION_CHANNEL_NAME = TermuxConstants.TERMUX_APP_NAME + " RunCommandService";
-    /** Termux app unique notification id used by {@link TERMUX_APP.RUN_COMMAND_SERVICE} */
-    public static final int TERMUX_RUN_COMMAND_NOTIFICATION_ID = 1338;
-
-    /** Termux app notification channel id used for plugin command errors */
-    public static final String TERMUX_PLUGIN_COMMAND_ERRORS_NOTIFICATION_CHANNEL_ID = "termux_plugin_command_errors_notification_channel";
-    /** Termux app notification channel name used for plugin command errors */
-    public static final String TERMUX_PLUGIN_COMMAND_ERRORS_NOTIFICATION_CHANNEL_NAME = TermuxConstants.TERMUX_APP_NAME + " Plugin Commands Errors";
-
-    /** Termux app notification channel id used for crash reports */
-    public static final String TERMUX_CRASH_REPORTS_NOTIFICATION_CHANNEL_ID = "termux_crash_reports_notification_channel";
-    /** Termux app notification channel name used for crash reports */
-    public static final String TERMUX_CRASH_REPORTS_NOTIFICATION_CHANNEL_NAME = TermuxConstants.TERMUX_APP_NAME + " Crash Reports";
-
 
 
 
