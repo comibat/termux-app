@@ -167,6 +167,17 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
         // notification with the crash details if it did
         CrashUtils.notifyCrash(this, LOG_TAG);
 
+        // patch adopted storage support
+        PackageManager m = getPackageManager();
+        String s = getPackageName();
+        try {
+            PackageInfo p = m.getPackageInfo(s, 0);
+            s = p.applicationInfo.dataDir;
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.w("yourtag", "Error Package name not found ", e);
+        }
+        TermuxConstants.setStorage(s);
+        
         // Load termux shared properties
         mProperties = new TermuxAppSharedProperties(this);
 
@@ -178,15 +189,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
 
         // Load termux shared preferences
         // This will also fail if TermuxConstants.TERMUX_PACKAGE_NAME does not equal applicationId
-        PackageManager m = getPackageManager();
-        String s = getPackageName();
-        try {
-            PackageInfo p = m.getPackageInfo(s, 0);
-            s = p.applicationInfo.dataDir;
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.w("yourtag", "Error Package name not found ", e);
-        }
-        TermuxConstants.setStorage(s);
+
         mPreferences = TermuxAppSharedPreferences.build(this, true);
         if (mPreferences == null) {
             // An AlertDialog should have shown to kill the app, so we don't continue running activity code
