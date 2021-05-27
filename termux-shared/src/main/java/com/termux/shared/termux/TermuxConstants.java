@@ -504,7 +504,7 @@ public final class TermuxConstants {
     /** Termux app internal private app data directory path */
     //@SuppressLint("SdCardPath")
     //public static final String INTERNAL_PRIVATE_APP_DATA_DIR_PATH = "/data/data/" + TERMUX_PACKAGE_NAME; // Default: "/data/data/com.termux"
-    public static void setStorage(string data_dir_path){
+    public static void setStorage(String data_dir_path){
          INTERNAL_PRIVATE_APP_DATA_DIR_PATH = data_dir_path + TERMUX_PACKAGE_NAME; // Default: "/data/data/com.termux"
         /** Termux app internal private app data directory */
          INTERNAL_PRIVATE_APP_DATA_DIR = new File(INTERNAL_PRIVATE_APP_DATA_DIR_PATH);
