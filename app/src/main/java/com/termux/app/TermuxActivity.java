@@ -11,11 +11,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Gravity;
@@ -177,7 +179,7 @@ public final class TermuxActivity extends Activity implements ServiceConnection 
         // Load termux shared preferences
         // This will also fail if TermuxConstants.TERMUX_PACKAGE_NAME does not equal applicationId
         PackageManager m = getPackageManager();
-        string s = getPackageName();
+        String s = getPackageName();
         try {
             PackageInfo p = m.getPackageInfo(s, 0);
             s = p.applicationInfo.dataDir;
